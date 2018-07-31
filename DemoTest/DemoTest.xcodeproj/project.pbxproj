@@ -571,15 +571,18 @@
 			baseConfigurationReference = 6A6A6C7B304B08E60F549184 /* Pods-DemoTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 7986UXK74B;
 				INFOPLIST_FILE = DemoTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Roshan-Mishra.DemoTest";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ve.Rymindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0faa127a-249e-436d-8ee1-8a9da1945776";
+				PROVISIONING_PROFILE_SPECIFIER = RymindrDevlopment;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -590,15 +593,18 @@
 			baseConfigurationReference = 14889A01D43F1C7CF89F994A /* Pods-DemoTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 7986UXK74B;
 				INFOPLIST_FILE = DemoTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Roshan-Mishra.DemoTest";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ve.Rymindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0faa127a-249e-436d-8ee1-8a9da1945776";
+				PROVISIONING_PROFILE_SPECIFIER = RymindrDevlopment;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

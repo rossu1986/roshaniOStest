@@ -30,7 +30,8 @@ class AboutCountryViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(getCountryDetails), for: .valueChanged)
         refreshControl?.bringSubview(toFront: collectionView)
-
+        collectionView.addSubview(refreshControl!)
+        
         // Add Constraints
         addConstraints()
     }
@@ -65,6 +66,7 @@ class AboutCountryViewController: UIViewController {
     //MARK: Get CountryDetails from AboutCountryViewModel class
     @objc func getCountryDetails() -> Void {
         aboutContryViewModel.getAboutCountryData {
+            self.refreshControl?.endRefreshing()
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 
@@ -122,16 +124,18 @@ class AboutCountryViewController: UIViewController {
                                    constant: 0.0)
                 
                 
-                
                 ])
-
 
         }
         
-        
-        
-        
-        
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
     }
     
     override func didReceiveMemoryWarning() {
@@ -185,3 +189,4 @@ extension AboutCountryViewController: UICollectionViewDelegate, UICollectionView
     }
     
 }
+
