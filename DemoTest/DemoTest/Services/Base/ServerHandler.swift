@@ -40,7 +40,7 @@ class ServerHandler: NSObject {
     class func sendGetRequest(functionName : String, showLoader: Bool,  completionHandler:@escaping ((_ responseValue: Any?, _ error: Error?) -> Void)) -> Void {
         // Check Network Availability
         if isNetWorkAvailable() == true {
-            // Show the Activity
+            // Show Activity
             if showLoader {
                 DispatchQueue.main.async(execute: {
                     ActivityIndicatorView.showActivity()
@@ -48,9 +48,9 @@ class ServerHandler: NSObject {
             }
             let url = APIPaths.baseUrl + functionName
             //print("Request Url: \(url)")
-            Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { (response) in
                 
-                // Hide the Activity
+                // Hide Activity
                 if showLoader {
                     DispatchQueue.main.async(execute: {
                         ActivityIndicatorView.hideActivity()
