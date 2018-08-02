@@ -13,9 +13,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        /**
+        Initializes a root view controller for the app
+         
+        - Created navigation controller
+        - Added Initial View that is AboutCountryViewController on UINavigation Controller
+        - UINavigation Controller as a Root View controller
+        - Added Root View Controller on Window
+ 
+         */
+        let aboutCountryViewController = AboutCountryViewController()
+        let navigationController = UINavigationController.init(rootViewController: aboutCountryViewController)
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

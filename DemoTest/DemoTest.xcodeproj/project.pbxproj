@@ -20,6 +20,7 @@
 		019DD8AF21106D6A0012B162 /* AboutCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8AE21106D6A0012B162 /* AboutCountryViewModel.swift */; };
 		019DD8B4211099CA0012B162 /* UIImageView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8B3211099CA0012B162 /* UIImageView+Loading.swift */; };
 		019DD8B92110B2F20012B162 /* APITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8B82110B2F20012B162 /* APITest.swift */; };
+		019DD8BC2112DE7C0012B162 /* AboutCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8BB2112DE7C0012B162 /* AboutCountryTableViewCell.swift */; };
 		163E7E53F90DFDCE4F0E1CA3 /* Pods_DemoTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1647400CB33A824D1B3C2F /* Pods_DemoTestTests.framework */; };
 		BF29C1E0E7618A8DB3666CFA /* Pods_DemoTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152822AFF24B979181457900 /* Pods_DemoTest.framework */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		019DD8AE21106D6A0012B162 /* AboutCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCountryViewModel.swift; sourceTree = "<group>"; };
 		019DD8B3211099CA0012B162 /* UIImageView+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Loading.swift"; sourceTree = "<group>"; };
 		019DD8B82110B2F20012B162 /* APITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITest.swift; sourceTree = "<group>"; };
+		019DD8BB2112DE7C0012B162 /* AboutCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCountryTableViewCell.swift; sourceTree = "<group>"; };
 		14889A01D43F1C7CF89F994A /* Pods-DemoTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoTest/Pods-DemoTest.release.xcconfig"; sourceTree = "<group>"; };
 		152822AFF24B979181457900 /* Pods_DemoTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6A6C7B304B08E60F549184 /* Pods-DemoTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoTest/Pods-DemoTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		019DD89421104FEA0012B162 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				019DD8BD2112E17F0012B162 /* AboutCountryCell */,
 				019DD87C21104BD30012B162 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
@@ -199,6 +202,14 @@
 				019DD8B3211099CA0012B162 /* UIImageView+Loading.swift */,
 			);
 			path = CustomFiles;
+			sourceTree = "<group>";
+		};
+		019DD8BD2112E17F0012B162 /* AboutCountryCell */ = {
+			isa = PBXGroup;
+			children = (
+				019DD8BB2112DE7C0012B162 /* AboutCountryTableViewCell.swift */,
+			);
+			path = AboutCountryCell;
 			sourceTree = "<group>";
 		};
 		3C62882C271C192FAAB7ABAD /* Frameworks */ = {
@@ -393,6 +404,7 @@
 				019DD89E2110562A0012B162 /* ServerHandler.swift in Sources */,
 				019DD8A4211058AC0012B162 /* AlertView.swift in Sources */,
 				019DD8A8211064CA0012B162 /* AboutCountry.swift in Sources */,
+				019DD8BC2112DE7C0012B162 /* AboutCountryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,7 +561,10 @@
 				DEVELOPMENT_TEAM = 7986UXK74B;
 				INFOPLIST_FILE = DemoTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ve.Rymindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0faa127a-249e-436d-8ee1-8a9da1945776";
@@ -568,7 +583,10 @@
 				DEVELOPMENT_TEAM = 7986UXK74B;
 				INFOPLIST_FILE = DemoTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ve.Rymindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0faa127a-249e-436d-8ee1-8a9da1945776";
@@ -586,7 +604,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Roshan-Mishra.DemoTestTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -603,7 +625,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Roshan-Mishra.DemoTestTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
