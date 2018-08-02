@@ -8,7 +8,6 @@
 
 import UIKit
 import SystemConfiguration
-import Alamofire
 
 class ServerHandler: NSObject {
     
@@ -48,31 +47,9 @@ class ServerHandler: NSObject {
             }
             let url = APIPaths.baseUrl + functionName
             //print("Request Url: \(url)")
-            Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { (response) in
-                
-                // Hide Activity
-                if showLoader {
-                    DispatchQueue.main.async(execute: {
-                        ActivityIndicatorView.hideActivity()
-                    })
-                }
-                switch(response.result) {
-                case .success(_):
-                    if response.result.isSuccess {
-                        let result = response.result.value
-                        //print("Response: \(result!)")
-                        completionHandler(result, nil)
-                    }
-                    break
-                    
-                case .failure(_):
-                    if response.result.isFailure {
-                        let error = response.result.error!
-                        completionHandler(nil, error)
-                    }
-                    break
-                }
-            })
+            
+            
+            
         } else {
             AlertView.showAlert(title: Messages.Network.title, message: Messages.Network.message, cancelBtnTitle: "OK")
         }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		019DD87421104BCD0012B162 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD87321104BCD0012B162 /* AppDelegate.swift */; };
-		019DD87921104BCD0012B162 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019DD87721104BCD0012B162 /* Main.storyboard */; };
 		019DD87B21104BD30012B162 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DD87A21104BD30012B162 /* Assets.xcassets */; };
 		019DD87E21104BD30012B162 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019DD87C21104BD30012B162 /* LaunchScreen.storyboard */; };
 		019DD89C211055170012B162 /* APIPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD89B211055170012B162 /* APIPaths.swift */; };
@@ -18,7 +17,6 @@
 		019DD8A621105B630012B162 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8A521105B630012B162 /* Messages.swift */; };
 		019DD8A8211064CA0012B162 /* AboutCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8A7211064CA0012B162 /* AboutCountry.swift */; };
 		019DD8AA211067D50012B162 /* AboutCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8A9211067D50012B162 /* AboutCountryViewController.swift */; };
-		019DD8AD21106C490012B162 /* AboutCountryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8AC21106C490012B162 /* AboutCountryCollectionViewCell.swift */; };
 		019DD8AF21106D6A0012B162 /* AboutCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8AE21106D6A0012B162 /* AboutCountryViewModel.swift */; };
 		019DD8B4211099CA0012B162 /* UIImageView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8B3211099CA0012B162 /* UIImageView+Loading.swift */; };
 		019DD8B92110B2F20012B162 /* APITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DD8B82110B2F20012B162 /* APITest.swift */; };
@@ -39,7 +37,6 @@
 /* Begin PBXFileReference section */
 		019DD87021104BCD0012B162 /* DemoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		019DD87321104BCD0012B162 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		019DD87821104BCD0012B162 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		019DD87A21104BD30012B162 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		019DD87D21104BD30012B162 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		019DD87F21104BD30012B162 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,7 +49,6 @@
 		019DD8A521105B630012B162 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		019DD8A7211064CA0012B162 /* AboutCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCountry.swift; sourceTree = "<group>"; };
 		019DD8A9211067D50012B162 /* AboutCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCountryViewController.swift; sourceTree = "<group>"; };
-		019DD8AC21106C490012B162 /* AboutCountryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCountryCollectionViewCell.swift; sourceTree = "<group>"; };
 		019DD8AE21106D6A0012B162 /* AboutCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCountryViewModel.swift; sourceTree = "<group>"; };
 		019DD8B3211099CA0012B162 /* UIImageView+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Loading.swift"; sourceTree = "<group>"; };
 		019DD8B82110B2F20012B162 /* APITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITest.swift; sourceTree = "<group>"; };
@@ -140,8 +136,6 @@
 		019DD89421104FEA0012B162 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				019DD8AB21106BD80012B162 /* CollectionView Cell */,
-				019DD87721104BCD0012B162 /* Main.storyboard */,
 				019DD87C21104BD30012B162 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
@@ -197,14 +191,6 @@
 				019DD8A521105B630012B162 /* Messages.swift */,
 			);
 			path = UtilityFiles;
-			sourceTree = "<group>";
-		};
-		019DD8AB21106BD80012B162 /* CollectionView Cell */ = {
-			isa = PBXGroup;
-			children = (
-				019DD8AC21106C490012B162 /* AboutCountryCollectionViewCell.swift */,
-			);
-			path = "CollectionView Cell";
 			sourceTree = "<group>";
 		};
 		019DD8B2211099AF0012B162 /* CustomFiles */ = {
@@ -321,7 +307,6 @@
 			files = (
 				019DD87E21104BD30012B162 /* LaunchScreen.storyboard in Resources */,
 				019DD87B21104BD30012B162 /* Assets.xcassets in Resources */,
-				019DD87921104BCD0012B162 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +345,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DemoTest/Pods-DemoTest-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RappleProgressHUD/RappleProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RappleProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -407,7 +390,6 @@
 				019DD8A621105B630012B162 /* Messages.swift in Sources */,
 				019DD8B4211099CA0012B162 /* UIImageView+Loading.swift in Sources */,
 				019DD89C211055170012B162 /* APIPaths.swift in Sources */,
-				019DD8AD21106C490012B162 /* AboutCountryCollectionViewCell.swift in Sources */,
 				019DD89E2110562A0012B162 /* ServerHandler.swift in Sources */,
 				019DD8A4211058AC0012B162 /* AlertView.swift in Sources */,
 				019DD8A8211064CA0012B162 /* AboutCountry.swift in Sources */,
@@ -433,14 +415,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		019DD87721104BCD0012B162 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				019DD87821104BCD0012B162 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		019DD87C21104BD30012B162 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -575,10 +549,7 @@
 				DEVELOPMENT_TEAM = 7986UXK74B;
 				INFOPLIST_FILE = DemoTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ve.Rymindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0faa127a-249e-436d-8ee1-8a9da1945776";
@@ -597,10 +568,7 @@
 				DEVELOPMENT_TEAM = 7986UXK74B;
 				INFOPLIST_FILE = DemoTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ve.Rymindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0faa127a-249e-436d-8ee1-8a9da1945776";
@@ -618,11 +586,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Roshan-Mishra.DemoTestTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -639,11 +603,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Roshan-Mishra.DemoTestTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

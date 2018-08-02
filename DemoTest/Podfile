@@ -6,7 +6,6 @@ target 'DemoTest' do
   use_frameworks!
 
   # Pods for DemoTest
-  pod 'Alamofire'
   pod 'RappleProgressHUD'
   pod 'SDWebImage', '~> 4.0'
 
