@@ -31,9 +31,11 @@ class AboutCountryTableViewCell: UITableViewCell {
     var aboutCountryTitleLabel: UILabel!
     var aboutCountryDescriptionLabel: UILabel!
     
-    
     /// tableView cell identifier for reusing the cell
     static var reusableIdentifer = "cell"
+    
+    /// build array to store constraints
+    var allConstraints: [NSLayoutConstraint] = []
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:)")
@@ -56,58 +58,129 @@ class AboutCountryTableViewCell: UITableViewCell {
         
         /*
          Add Autolayout Constraints on TableCell fields
-         
          - Add constraints with Visual Format Language
          
          */
-        /// build dinctionary of views
+        
+        /// Create a views dictionary that holds string representations of views to resolve inside the format string.
         let viewsDictionary: [String: Any] = [
             "aboutCountryImgView": aboutCountryImgView,
             "aboutCountryTitleLabel": aboutCountryTitleLabel,
             "aboutCountryDescriptionLabel": aboutCountryDescriptionLabel]
         
-        /// build array to store constraints
-        var allConstraints: [NSLayoutConstraint] = []
-        
         /*
          Set Vertical and Horizontal constraints on table view cell attribute
          
          */
+        if #available(iOS 11.0, *) {
+            
+            /// In case of the rectangle-shaped phones, insets will be 0; the iPhone X however will have different values based on its orientation
+            let newInsets = self.safeAreaInsets
+            let leftMargin = newInsets.left > 0 ? newInsets.left : 0
+            let rightMargin = newInsets.right > 0 ? newInsets.right : 0
+            let topMargin = newInsets.top > 0 ? newInsets.top : 0
+            let bottomMargin = newInsets.bottom > 0 ? newInsets.bottom : 0
+            
+            /*
+               Metrics are a dictionary of number values that can appear inside the VFL format string
+               -set the metrics parameter to the metrics dictionary
+ 
+            */
+            let metrics = [
+                "topMargin": topMargin,
+                "bottomMargin": bottomMargin,
+                "leftMargin": leftMargin,
+                "rightMargin": rightMargin]
+            
+            /// Set up vertical constraints for the about country title
+            let titleLabelVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[aboutCountryTitleLabel]",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += titleLabelVerticalConstraints
+            
+            /// Set up horizontal constraints for the about country title, placing its trailing edge from its about country image.
+            let titleLabelHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[aboutCountryImgView]-[aboutCountryTitleLabel]",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += titleLabelHorizontalConstraints
+            
+            /// Set up vertical constraints for the about country description, placing its width greater than 75.
+            let descriptionLabelVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[aboutCountryTitleLabel]-[aboutCountryDescriptionLabel(>=75@500)]-|",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += descriptionLabelVerticalConstraints
+            
+            /// Set up horizontal constraints for the about country description, placing its trailing edge from its about country image.
+            let descriptionLabelHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[aboutCountryImgView]-[aboutCountryDescriptionLabel]-|",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += descriptionLabelHorizontalConstraints
+            
+            /// Set up vertical constraints for the about country image, placing its height 100.
+            let imageVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[aboutCountryImgView(100@1000)]",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += imageVerticalConstraints
+            
+            /// Set up horizontal constraints for the about country image, placing its width 100.
+            let imageHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[aboutCountryImgView(100@1000)]",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += imageHorizontalConstraints
+            
+        } else {
+            // Fallback on earlier versions
+            
+            /// Set up vertical constraints for the about country title
+            let titleLabelVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[aboutCountryTitleLabel]",
+                metrics: nil,
+                views: viewsDictionary)
+            allConstraints += titleLabelVerticalConstraints
+            
+            /// Set up horizontal constraints for the about country title, placing its trailing edge from its about country image.
+            let titleLabelHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[aboutCountryImgView]-[aboutCountryTitleLabel]",
+                metrics: nil,
+                views: viewsDictionary)
+            allConstraints += titleLabelHorizontalConstraints
+            
+            /// Set up vertical constraints for the about country description, placing its width greater than 75.
+            let descriptionLabelVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[aboutCountryTitleLabel]-[aboutCountryDescriptionLabel(>=75@500)]-|",
+                metrics: nil,
+                views: viewsDictionary)
+            allConstraints += descriptionLabelVerticalConstraints
+            
+            /// Set up horizontal constraints for the about country description, placing its trailing edge from its about country image.
+            let descriptionLabelHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[aboutCountryImgView]-[aboutCountryDescriptionLabel]-|",
+                metrics: nil,
+                views: viewsDictionary)
+            allConstraints += descriptionLabelHorizontalConstraints
+            
+            /// Set up vertical constraints for the about country image, placing its height 100.
+            let imageVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[aboutCountryImgView(100@1000)]",
+                metrics: nil,
+                views: viewsDictionary)
+            allConstraints += imageVerticalConstraints
+            
+            /// Set up horizontal constraints for the about country image, placing its width 100.
+            let imageHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[aboutCountryImgView(100@1000)]",
+                metrics: nil,
+                views: viewsDictionary)
+            allConstraints += imageHorizontalConstraints
+        }
         
-        /// For aboutCountryImgView
-        let imageVerticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[aboutCountryImgView(100)]-|",
-            metrics: nil,
-            views: viewsDictionary)
-        allConstraints += imageVerticalConstraints
-        
-        /// For AboutCountryTitleLabel
-        let titleLabelVerticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[aboutCountryTitleLabel]",
-            metrics: nil,
-            views: viewsDictionary)
-        allConstraints += titleLabelVerticalConstraints
-        
-        /// aboutCountryDescriptionLabel
-        let descriptionLabelVerticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[aboutCountryTitleLabel]-[aboutCountryDescriptionLabel]",
-            metrics: nil,
-            views: viewsDictionary)
-        allConstraints += descriptionLabelVerticalConstraints
-        
-        let titleLabelHorizontalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[aboutCountryImgView]-[aboutCountryTitleLabel]-15-|",
-            metrics: nil,
-            views: viewsDictionary)
-        allConstraints += titleLabelHorizontalConstraints
-        
-        let descriptionLabelHorizontalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[aboutCountryImgView(100)]-[aboutCountryDescriptionLabel]-15-|",
-            metrics: nil,
-            views: viewsDictionary)
-        allConstraints += descriptionLabelHorizontalConstraints
-        
-        
+        /// Activate the layout constraints using the class method activate(_:) on NSLayoutConstraint by passing in the allConstraints array.
         NSLayoutConstraint.activate(allConstraints)
        
     }
@@ -137,7 +210,7 @@ class AboutCountryTableViewCell: UITableViewCell {
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 0
         titleLabel.sizeToFit()
-        titleLabel.font = UIFont.systemFont(ofSize: 14.0)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         self.contentView.addSubview(titleLabel)
         self.aboutCountryTitleLabel = titleLabel
         

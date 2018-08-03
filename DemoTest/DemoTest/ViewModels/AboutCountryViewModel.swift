@@ -15,7 +15,6 @@ class AboutCountryViewModel {
     
     // MARK:- Get About Country Data From Server
     
-    
     /// Get the About Country data from server using REST API.
     ///
     /// - Parameter completionBlock: completion block to notify get the response from REST API
@@ -25,7 +24,11 @@ class AboutCountryViewModel {
         ServerHandler.sendGetRequest(functionName: aboutCountryUrl, showLoader: true) { (result, error) in
             //Success result from the server
             if error == nil {
+                /// Remove old data from array
+                self.aboutCountryDatas.removeAll()
                 let response = self.convertToDictionary(text: result as! String)
+                
+                /// store about country title for showing Navigation Bar
                 self.aboutCountryName = response!["title"] as! String
                 if let responseData = response!["rows"], responseData is [[String: Any]]{
                     let responseDictionary = responseData as! [[String : Any]]
@@ -35,6 +38,7 @@ class AboutCountryViewModel {
                     }
                 }
             } else {
+                /// In case if server send the error then show the message
                 AlertView.showAlert(title: "Alert!", message: "Can't load items", cancelBtnTitle: "OK")
             }
             completionBlock()

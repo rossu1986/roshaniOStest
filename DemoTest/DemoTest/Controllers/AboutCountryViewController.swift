@@ -19,10 +19,18 @@ class AboutCountryViewController: UIViewController {
     var aboutContryViewModel : AboutCountryViewModel!
     var aboutCountryTableView: UITableView!
     
+    /*
+     
+ 
+    */
+    var allConstraints: [NSLayoutConstraint] = []
+    
     // MARK: View Controller Life Cycle
     
     override func loadView() {
         super.loadView()
+        
+        
         /*
          Create custom UITableView by programatically i.e. aboutCountryTableView
          - Set the tableview data source and delegate
@@ -44,7 +52,7 @@ class AboutCountryViewController: UIViewController {
          
          */
         aboutCountryTableView.rowHeight = UITableViewAutomaticDimension
-        aboutCountryTableView.estimatedRowHeight = 100
+        aboutCountryTableView.estimatedRowHeight = 120
         self.view.addSubview(self.aboutCountryTableView)
         
         /*
@@ -59,7 +67,7 @@ class AboutCountryViewController: UIViewController {
         refreshControl?.bringSubview(toFront: aboutCountryTableView)
         aboutCountryTableView.addSubview(refreshControl!)
         
-        // Add Constraints
+        /// Visual format language for NSLayoutConstraint for autolayouting
         addConstraints()
     }
 
@@ -68,53 +76,109 @@ class AboutCountryViewController: UIViewController {
 
         /// Initialising AboutCountry ViewModel Class
         aboutContryViewModel = AboutCountryViewModel()
-        
-        //
-        aboutCountryTableView.translatesAutoresizingMaskIntoConstraints = false
-        aboutCountryTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        aboutCountryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        aboutCountryTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        aboutCountryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+     }
+    
+    /// Add layout Constraints programmatically to all the tableview
+    fileprivate func addConstraints() {
+        /*
+         Set the property translatesAutoresizingMaskIntoConstraints to be false on each fields, because by default iOS generates Auto Layout constraints for you based on a view's size and position.
+         
+         - We'll be doing it by progrmatically, so we need to disable this feature.
+         */
         aboutCountryTableView.translatesAutoresizingMaskIntoConstraints = false
         
         /*
-         Add Autolayout Constraints on TableCell fields
-         
-         - Add constraints with Visual Format Language
+         Add Autolayout Constraints on TableView
          
          */
+        
+        /// Create a views dictionary that holds string representations of views to resolve inside the format string.
         let viewsDictionary: [String: Any] = [
             "aboutCountryTableView": aboutCountryTableView]
         
-        var allConstraints: [NSLayoutConstraint] = []
+        /// deactivated and removed when new constraints are required
+        if !allConstraints.isEmpty {
+            NSLayoutConstraint.deactivate(allConstraints)
+            allConstraints.removeAll()
+        }
         
-        /*
-         Set Vertical and Horizontal constraints on table view cell attribute
-         
-         */
-        
-        /// For aboutCountryImgView
+        /// Set up vertical constraints for the tableView.
         let tableViewVerticalConstraints = NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-[aboutCountryTableView]-|",
             metrics: nil,
             views: viewsDictionary)
         allConstraints += tableViewVerticalConstraints
         
-        
+        /// Set up horizonal constraints for the tableView, placing its trailing and leading edge 0 points from its superview.
         let topRowHorizontalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[aboutCountryTableView]-|",
+            withVisualFormat: "H:|-0-[aboutCountryTableView]-0-|",
             metrics: nil,
             views: viewsDictionary)
         allConstraints += topRowHorizontalConstraints
         
-        
-        //NSLayoutConstraint.activate(allConstraints)
+        /// Activate the layout constraints using the class method activate(_:) on NSLayoutConstraint by passing in the allConstraints array.
+        NSLayoutConstraint.activate(allConstraints)
+    }
+    
+    /*
+     For iPhoneX
+     
+     - view controllers will be notified by the viewSafeAreaInsetsDidChange() on safe area changes
  
+    */
+    
+    override func viewSafeAreaInsetsDidChange() {
+        if #available(iOS 11.0, *) {
+            super.viewSafeAreaInsetsDidChange()
+            
+            /// deactivated and removed when new constraints are required
+            if !allConstraints.isEmpty {
+                NSLayoutConstraint.deactivate(allConstraints)
+                allConstraints.removeAll()
+            }
+            
+            /// Create a views dictionary that holds string representations of views to resolve inside the format string.
+            let viewsDictionary: [String: Any] = [
+                "aboutCountryTableView": aboutCountryTableView]
+            
+            /// In case of the rectangle-shaped phones, insets will be 0; the iPhone X however will have different values based on its orientation
+            let newInsets = view.safeAreaInsets
+            let leftMargin = newInsets.left > 0 ? newInsets.left : 0
+            let rightMargin = newInsets.right > 0 ? newInsets.right : 0
+            let topMargin = newInsets.top > 0 ? newInsets.top : 0
+            let bottomMargin = newInsets.bottom > 0 ? newInsets.bottom : 0
+            
+            /// set the metrics parameter to the metrics dictionary
+            let metrics = [
+                "topMargin": topMargin,
+                "bottomMargin": bottomMargin,
+                "leftMargin": leftMargin,
+                "rightMargin": rightMargin]
+            
+            /// Set up vertical constraints for the tableView, placing its top and bottom Margin   from its superview.
+            let tableViewVerticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-topMargin-[aboutCountryTableView]-bottomMargin-|",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += tableViewVerticalConstraints
+            
+            /// Set up horizonal constraints for the tableView, placing its trailing and leading edge 0 points from its superview.
+            let topRowHorizontalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-0-[aboutCountryTableView]-0-|",
+                metrics: metrics,
+                views: viewsDictionary)
+            allConstraints += topRowHorizontalConstraints
+            
+            /// Activate the layout constraints using the class method activate(_:) on NSLayoutConstraint by passing in the allConstraints array.
+            NSLayoutConstraint.activate(allConstraints)
+            
+        } 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //Load datas
+        
+        /// Load server datas
         self.getCountryDetails()
     }
     
@@ -133,8 +197,10 @@ class AboutCountryViewController: UIViewController {
  
         */
         aboutContryViewModel.getAboutCountryData {
-            self.refreshControl?.endRefreshing()
             DispatchQueue.main.async {
+                /// End refresh control
+                 self.refreshControl?.endRefreshing()
+                
                 /// Refresh table content data
                 self.aboutCountryTableView.reloadData()
                 
@@ -144,11 +210,6 @@ class AboutCountryViewController: UIViewController {
                 self.title = self.aboutContryViewModel.aboutCountryName
             }
         }
-    }
-    
-    /// Add layout Constraints programmatically to all the subviews
-    fileprivate func addConstraints() {
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -177,6 +238,7 @@ extension AboutCountryViewController : UITableViewDelegate, UITableViewDataSourc
         let item: AboutCountry = aboutContryViewModel.getCountryRecord(indexPath: indexPath)
         
         // Set cell contents
+        cell.aboutCountryImgView.image = nil
         cell.aboutCountryImgView.loadImage(item.imageUrl)
         cell.aboutCountryTitleLabel.text = item.title
         cell.aboutCountryDescriptionLabel.text = item.des
@@ -189,6 +251,6 @@ extension AboutCountryViewController : UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 120
     }
 }

@@ -24,10 +24,12 @@ class APITest: XCTestCase {
     // MARK: - Enabled Tests
     func testGetAboutCountryData() {
         let aboutCountryUrl = APIPaths.itemsUrl
+        let except = expectation(description: "Success")
         
         ServerHandler.sendGetRequest(functionName: aboutCountryUrl, showLoader: true) { (result, error) in
             //Success result from the server
             if error == nil {
+                except.fulfill()
                 let response = self.convertToDictionary(text: result as! String)
                 if let responseData = response!["rows"], responseData is [[String: Any]]{
                     print(responseData)
@@ -35,6 +37,13 @@ class APITest: XCTestCase {
             } else {
                 XCTAssertNil(error, "Whoops, error \(error!.localizedDescription)")
                 
+            }
+        }
+        //Check API response time
+        waitForExpectations(timeout: 20) { (error) in
+            if let e = error {
+                print(e)
+                 XCTFail("Request time out...")
             }
         }
     }

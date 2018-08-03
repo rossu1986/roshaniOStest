@@ -9,9 +9,15 @@
 import UIKit
 import SystemConfiguration
 
+/*
+ - Network Activity
+ - Fetch server data
+ 
+ */
+
 class ServerHandler: NSObject {
     
-    /// Network Activity
+    /// Network Activity for checking the network in device
     class func isNetWorkAvailable() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
@@ -48,16 +54,14 @@ class ServerHandler: NSObject {
             }
             let aboutCountryUrl = APIPaths.baseUrl + functionName
            
-            // Set up the URL request
+            /// Set up the URL request
             guard let url = URL(string: aboutCountryUrl) else {
                 print("Error: cannot create URL")
                 return
             }
-            var urlRequest = URLRequest(url: url)
-            urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            urlRequest.httpMethod = "GET"
+            let urlRequest = URLRequest(url: url)
 
-            // set up the session
+            /// set up the session
             let config = URLSessionConfiguration.default
             let session = URLSession(configuration: config)
             
@@ -90,15 +94,13 @@ class ServerHandler: NSObject {
                 */
                 if httpStatus?.statusCode == 200 {
                     /// Convert first data to UTF8 encoding
-                    let utfStringData = String(data: data, encoding: .isoLatin1)
+                    let utfStringData = String(data: data, encoding: String.Encoding.ascii)
                     completionHandler(utfStringData, nil)
                 } else {
                     completionHandler(nil, error)
                 }
-                
             })
             task.resume()
-            
             
         } else {
             AlertView.showAlert(title: Messages.Network.title, message: Messages.Network.message, cancelBtnTitle: "OK")
