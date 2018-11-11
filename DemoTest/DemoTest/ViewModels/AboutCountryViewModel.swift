@@ -21,6 +21,9 @@ class AboutCountryViewModel {
     func getAboutCountryData(completionBlock : @escaping (() ->())) {
         let aboutCountryUrl = APIPaths.itemsUrl
         
+		/// Implement [weak self] for fetching data from server 
+		/// Once used the closure capture value then assign the nil by using weak self 
+		/// for breaking any memory leak(retain cycle)
         ServerHandler.sendGetRequest(functionName: aboutCountryUrl, showLoader: true) { [weak self](result, error) in
             //Success result from the server
             if error == nil {
