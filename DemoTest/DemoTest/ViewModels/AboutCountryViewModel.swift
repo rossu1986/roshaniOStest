@@ -21,20 +21,20 @@ class AboutCountryViewModel {
     func getAboutCountryData(completionBlock : @escaping (() ->())) {
         let aboutCountryUrl = APIPaths.itemsUrl
         
-        ServerHandler.sendGetRequest(functionName: aboutCountryUrl, showLoader: true) { (result, error) in
+        ServerHandler.sendGetRequest(functionName: aboutCountryUrl, showLoader: true) { [weak self](result, error) in
             //Success result from the server
             if error == nil {
                 /// Remove old data from array
-                self.aboutCountryDatas.removeAll()
-                let response = self.convertToDictionary(text: result as! String)
+                self?.aboutCountryDatas.removeAll()
+                let response = self?.convertToDictionary(text: result as! String)
                 
                 /// store about country title for showing Navigation Bar
-                self.aboutCountryName = response!["title"] as! String
+                self?.aboutCountryName = response!["title"] as! String
                 if let responseData = response!["rows"], responseData is [[String: Any]]{
                     let responseDictionary = responseData as! [[String : Any]]
                     for countryDetail in responseDictionary{
                         let aboutCountry = AboutCountry(data: countryDetail)
-                        self.aboutCountryDatas.append(aboutCountry)
+                        self?.aboutCountryDatas.append(aboutCountry)
                     }
                 }
             } else {
